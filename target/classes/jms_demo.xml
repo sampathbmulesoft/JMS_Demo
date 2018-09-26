@@ -11,7 +11,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
     <context:property-placeholder location="dev.properties"/>
     <jms:activemq-connector name="Active_MQ" specification="1.1" brokerURL="${jms.broker}" validateConnections="true" doc:name="Active MQ"/>
-    <http:listener-config name="HTTP_Listener_Configuration" host="localhost" port="8081" doc:name="HTTP Listener Configuration"/>
+    <http:listener-config name="HTTP_Listener_Configuration" host="$application.host}" port="${application.port}" doc:name="HTTP Listener Configuration"/>
     <flow name="getTopicMessagesFlow">
         <jms:inbound-endpoint topic="apessentials" connector-ref="Active_MQ" doc:name="JMS"/>
         <logger message="#[payload]" level="INFO" doc:name="Logger"/>
